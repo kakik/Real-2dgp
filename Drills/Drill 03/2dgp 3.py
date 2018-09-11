@@ -1,21 +1,23 @@
 from pico2d import *
-os.chdir("C:\\Users\\Administrator\\Desktop\\2017180023----\\Labs\\Lecture03")
+import math
+
 
 open_canvas()
-
 grass = load_image('grass.png')
 character = load_image('character.png')
 
-isrect=true # true=rect false=circle
-rectway=3  # 1=LEFT 2=TOP 3=RIGHT 4=BOTTOM
-
+isrect = True
+rectway=3 
 x = 400
 y=90
-if(x==400,y==90):
-    if(isrect==true):
-        if(rectway==1):
-             clear_canvas_now()
-             grass.draw_now(400, 30)
+angle=270
+
+while(True):
+    clear_canvas_now()
+    grass.draw_now(400, 30)
+    
+    if(isrect==True):
+        if(rectway==1):            
              character.draw_now(x, y)
              x = x - 2
              delay(0.01)
@@ -24,43 +26,41 @@ if(x==400,y==90):
                  rectway=4
 
         elif(rectway==2):
-             clear_canvas_now()
-             grass.draw_now(400, 30)
              character.draw_now(x, y)
              y = y + 2
              delay(0.01)
 
-             if(y>=500):
+             if(y>=490):
                  rectway=1
 
         elif(rectway==3):
-             clear_canvas_now()
-             grass.draw_now(400, 30)
-             character.draw_now(x, y)
-             x = x -2
-             delay(0.01)
+            if(398<=x&x<400):
+                isrect=False
+        
+            character.draw_now(x, y)
+            x = x +2
+            delay(0.01)
 
-             if(x<=50):
-                 rectway=2
+            if(x>=750):
+                rectway=2
 
         elif(rectway==4):
-             clear_canvas_now()
-             grass.draw_now(400, 30)
              character.draw_now(x, y)
-             x = x -2
+             y = y -2
              delay(0.01)
 
-             if(x<=50):
+             if(y<=90):
                  rectway=3
+                 
+    elif(isrect==False):     
+        character.draw_now(x, y)
+        angle=angle+1
         
-    
-while (x < 800):
-    if()
-    clear_canvas_now()
-    grass.draw_now(400, 30)
-    character.draw_now(x, 90)
-    x = x + 2
-    delay(0.01)
-    
-close_canvas()
- 
+        x=400.0+math.cos(angle/180*math.pi)*200.0
+        y=290.0+math.sin(angle/180*math.pi)*200.0
+        delay(0.01)
+
+        if((angle%360)==269):
+            isrect=True
+            x=400
+            y=90
