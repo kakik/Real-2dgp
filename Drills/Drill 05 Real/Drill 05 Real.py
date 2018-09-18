@@ -15,7 +15,7 @@ def  move_point_to_point(from_x, from_y, to_x, to_y):
     x=from_x
     y=from_y
     x_speed = (to_x - from_x) / 32.0
-    y_speed = (to_y - from_y) / 30.0
+    y_speed = (to_y - from_y) / 32.0
 
     for i in range (1,32):
         clear_canvas()
