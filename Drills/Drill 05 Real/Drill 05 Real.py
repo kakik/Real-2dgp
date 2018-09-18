@@ -24,7 +24,10 @@ def  move_point_to_point(from_x, from_y, to_x, to_y):
         x += x_speed
         y += y_speed
 
-        character.clip_draw(frame * 100, 0, 100, 100, x, y)
+        if x >= to_x:
+            character.clip_draw(frame * 100, 0, 100, 100, x, y)
+        elif x < to_x:
+            character.clip_draw(frame * 100, 100, 100, 100, x, y)
 
         update_canvas()
         frame = (frame + 1) % 8
