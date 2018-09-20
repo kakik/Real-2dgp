@@ -3,7 +3,13 @@ from pico2d import *
 KPU_WIDTH, KPU_HEIGHT = 1280, 1024
 
 def move_character(from_x, from_y, to_x, to_y):
-    pass
+    global x, y
+    x_speed = (to_x - from_x) / 32
+    y_speed = (to_y - from_y) / 32
+
+    for i in (1, 32):
+        x += x_speed
+        y += y_speed
 
 def handle_events():
     global running
@@ -21,7 +27,6 @@ def handle_events():
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_LEFT:
                 move_character(x, y, mx, my)
-
 
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
