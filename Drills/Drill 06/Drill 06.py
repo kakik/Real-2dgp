@@ -33,6 +33,7 @@ def handle_events():
 
 
 
+
 open_canvas()
 kpu_ground = load_image('KPU_GROUND.png')
 character = load_image('animation_sheet.png')
