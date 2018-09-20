@@ -8,6 +8,7 @@ def handle_events():
     global mx, my
     global x_speed, y_speed
     global x, y
+    global to_x, to_y
     global run_distance
 
     events = get_events()
@@ -20,6 +21,8 @@ def handle_events():
             mx, my = event.x, KPU_HEIGHT // 2 - event.y + 52
 
         elif event.type == SDL_MOUSEBUTTONDOWN:
+            to_x=mx
+            to_y=my
             x_speed = (mx - x) / 32
             y_speed = (my - y) / 32
             run_distance = 0
@@ -38,6 +41,7 @@ hand_arrow = load_image('hand_arrow.png')
 running = True
 x, y = KPU_WIDTH // 2, KPU_HEIGHT // 2
 mx, my = 0, 0
+to_x, to_y = 0, 0
 x_speed, y_speed = 0, 0
 run_distance = 0
 frame = 0
@@ -48,7 +52,7 @@ while running:
     clear_canvas()
 
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
-    if mx > x:
+    if to_x > x:
         character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
     else:
         character.clip_draw(frame * 100, 100 * 0, 100, 100, x, y)
